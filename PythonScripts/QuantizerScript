@@ -1,0 +1,22 @@
+from onnxruntime.quantization import quantize_static, QuantType
+from yolo_calib_reader import YoloCalibrationDataReader
+
+# Paths
+float_model = "my_model.onnx"
+quant_model = "my_model_quant.onnx"
+calib_folder = "calib_data"
+
+# Create calibration reader
+dr = YoloCalibrationDataReader(calib_folder)
+
+# Perform quantization
+quantize_static(
+    model_input=float_model,
+    model_output=quant_model,
+    calibration_data_reader=dr,
+    weight_type=QuantType.QInt8,
+    activation_type=QuantType.QInt8,
+    calibrate_method="entropy"  # or "minmax"
+)
+
+print("Quantized model saved to:", quant_model)
