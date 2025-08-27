@@ -1,7 +1,7 @@
 import os
 
-input_file = "dataset/test/_annotations.txt"
-output_dir = "dataset/labels"
+input_file = "dataset/images/val/_annotations.txt"
+output_dir = "dataset/labels/val"
 
 os.makedirs(output_dir, exist_ok=True)
 
